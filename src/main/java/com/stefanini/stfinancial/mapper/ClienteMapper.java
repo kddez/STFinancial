@@ -13,14 +13,17 @@ public class ClienteMapper {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public Cliente toEntity(ClienteRequest clienteRequest) {
+	public Cliente toEntity(ClienteRequest clienteRequest)
+	{
 		return modelMapper.map(clienteRequest, Cliente.class);
 	}
 	
-	public Cliente toEntitySave(ClienteRequest clienteRequest) {
+	public Cliente toEntitySave(ClienteRequest clienteRequest)
+	{
 		return modelMapper.map(clienteRequest, Cliente.class);
 	}
-	public Cliente toDto(ClienteDTO clienteDTO) {
+	public Cliente toDto(ClienteDTO clienteDTO)
+	{
 		return modelMapper.map(clienteDTO, Cliente.class);
 	}
 	

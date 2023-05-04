@@ -18,8 +18,6 @@ public class AlocacaoProfissionaisRequest implements Serializable{
 	
 	private static final long serialVersionUID = 6017547239678754027L;
 
-//	private HorasMes horasMes;
-//	private Long idHorasMes;
 	private Contrato contrato;
 	private Long idContrato;
 	private Profissional profissional;

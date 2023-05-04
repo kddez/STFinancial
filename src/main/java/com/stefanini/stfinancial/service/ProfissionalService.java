@@ -35,7 +35,8 @@ public class ProfissionalService {
 		return repo.findByHorasMesMesComp(mesComp);
 	}
 	public Profissional alterarProfissional(Profissional profissional) {
-			return repo.save(profissional);
+
+		return repo.save(profissional);
 	}
 
 	public String deletarProfissional(Long matricula, String idHorasMes) {

@@ -1,5 +1,6 @@
 package com.stefanini.stfinancial.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -23,42 +25,49 @@ public class Patrimonio implements Serializable {
     private Long idPatrimonio;
 
     @NotNull
-    @Column
+    @Column (name = "tipo_de_patrimonio")
     private String tipoDePatrimonio;
 
     @NotNull
-    @Column
+    @Column (name = "modelo")
     private String modelo;
 
     @NotNull
-    @Column
+    @Column(name = "fabricante")
     private String fabricante;
 
     @NotNull
-    @Column
+    @Column(name = "numero_de_serie")
     private String numeroDeSerie;
 
     @NotNull
-    @Column
+    @Column(name = "data_de_registro")
     private Date dataDeRegistro;
 
     @NotNull
-    @Column
+    @Column(name = "valor_de_aquisicao")
     private BigDecimal valorDeAquisicao;
 
     @NotNull
-    @Column
+    @Column(name = "estado_atual")
     private String estadoAtual;
 
-    public String getFormatedDate(Date date) {
-        return new SimpleDateFormat("yyyy-MM-dd").format(date);
+
+    @OneToMany(mappedBy = "patrimonio")
+    @JsonIgnore
+    private List<ContratoEquipamento> contratosEquipamentos;
+    public String getFormatedDate(Date date){
+        return new SimpleDateFormat("yyyy-MM").format(date);
+
     }
 
-    public String getFrontFormatedDate() {
-        return new SimpleDateFormat("dd/MM/yyyy").format(dataDeRegistro);
+    public String getFrontFormatedDate(Date date){
+        return new SimpleDateFormat("MM/yyyy").format(date);
     }
-    public String getFrontFormatedCurrency(BigDecimal value) {
-        return "R$" + String.format("%,.2f", value);
+
+
+    public void setIdPatrimonio(){
+
     }
 
 }

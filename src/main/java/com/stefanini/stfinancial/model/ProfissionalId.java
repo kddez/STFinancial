@@ -23,4 +23,6 @@ public class ProfissionalId implements Serializable {
     @Column(name = "mesComp")
     private LocalDate horasMes;
 
+
+
 }

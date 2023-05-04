@@ -40,7 +40,6 @@ public class ProfissionalController {
     }
     @RequestMapping(path = "/deletarProfissional" , method = RequestMethod.DELETE)
     public ResponseEntity<?> deletarProfissional(@RequestParam Long matricula, @RequestParam String idHorasMes) {
-//    	Profissional classe = mapper.toEntity(request);
     	return ResponseEntity.ok(service.deletarProfissional(matricula, idHorasMes));
     }
 

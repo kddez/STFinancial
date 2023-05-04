@@ -3,10 +3,11 @@ package com.stefanini.stfinancial.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import com.stefanini.stfinancial.model.HorasMes;
 import com.stefanini.stfinancial.model.Operacao;
-
+import com.stefanini.stfinancial.model.Patrimonio;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,8 +30,8 @@ public class ProfissionalDTO implements Serializable{
 	private BigDecimal custoLicencas;
 	private BigDecimal custoPessoal;
 	private Double custoEfetivoTotalHora;
-	
+
 	private Operacao operacaoPadrao;
 	private HorasMes horasMes;
-	
+
 }

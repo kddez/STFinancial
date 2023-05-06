@@ -15,11 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stefanini.stfinancial.request.UsuarioRequest;
-import com.stefanini.stfinancial.service.LoginService;
 
 import lombok.AllArgsConstructor;
-
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/stfinancial/login")

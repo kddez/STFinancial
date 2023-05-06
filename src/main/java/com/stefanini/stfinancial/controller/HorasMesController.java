@@ -11,8 +11,6 @@ import com.stefanini.stfinancial.service.HorasMesService;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
 @RestController
 @RequestMapping("/stfinancial/horasmes")

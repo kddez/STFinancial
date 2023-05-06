@@ -14,5 +14,6 @@ import java.util.List;
 public interface AlocacaoProfissionaisRepository extends JpaRepository<AlocacaoProfissionais, AlocacaoProfissionaisId> {
 
     @Query(value = "SELECT * FROM ALOCACAO_PROFISSIONAIS WHERE MES_COMP LIKE CONCAT(?1,'%')", nativeQuery = true)
+
     List<AlocacaoProfissionais> findAlocacoesByMesComp(LocalDate mesComp);
 }

@@ -1,6 +1,7 @@
 package com.stefanini.stfinancial.service;
 
 import com.stefanini.stfinancial.model.Patrimonio;
+import com.stefanini.stfinancial.model.StatusPatrimonio;
 import com.stefanini.stfinancial.repository.PatrimonioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 @RestController
 @RequestMapping("/stfinancial/patrimonio")
+
 public class PatrimonioController {
 
     @Autowired
@@ -26,6 +29,10 @@ public class PatrimonioController {
     @RequestMapping(path = "/salvarPatrimonio", method = RequestMethod.POST)
     public ResponseEntity<?> salvarPatrimonio(@RequestBody PatrimonioRequest request){
         Patrimonio patri = mapper.toEntity(request);
+
+        //NF não pode se repetir
+
+        patri.setDataDeRegistro(LocalDate.now());
         return ResponseEntity.ok(service.inserirPatrimonio(patri));
     }
 
@@ -37,4 +44,6 @@ public class PatrimonioController {
 
     @RequestMapping (path = "/listarPatrimonios", method = RequestMethod.GET)
     public ResponseEntity<?> listar() {return ResponseEntity.ok(service.listarPatrimonios());}
+
+    //deletar, listar disponíveis
 }

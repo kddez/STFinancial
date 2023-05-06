@@ -3,6 +3,7 @@ package com.stefanini.stfinancial.dto;
 import com.stefanini.stfinancial.model.Patrimonio;
 import com.stefanini.stfinancial.model.Profissional;
 import com.stefanini.stfinancial.model.ProfissionalId;
+import com.stefanini.stfinancial.model.StatusPatrimonio;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,4 +28,5 @@ public class ContratoEquipamentoDTO implements Serializable {
     private Date mesComp;
     private ProfissionalId profissionalId;
     private Boolean situacaoContrato;
+
 }

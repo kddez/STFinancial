@@ -9,8 +9,6 @@ import com.stefanini.stfinancial.model.Faturamento;
 import com.stefanini.stfinancial.request.FaturamentoRequest;
 import com.stefanini.stfinancial.service.FaturamentoService;
 
-import java.time.LocalDate;
-
 @RestController
 @RequestMapping("/stfinancial/faturamento")
 public class FaturamentoController {
@@ -21,8 +19,6 @@ public class FaturamentoController {
 	@Autowired
 	private FaturamentoMapper mapper;
 
-
-    
     @GetMapping("/buscar")
     public Faturamento buscarPorId(@RequestParam Long idContrato, @RequestParam String idHorasMes) {
     	return service.findByIdFaturamento(idContrato, idHorasMes);

@@ -5,10 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -33,25 +35,31 @@ public class Patrimonio implements Serializable {
     private String modelo;
 
     @NotNull
-    @Column(name = "fabricante")
     private String fabricante;
 
     @NotNull
-    @Column(name = "numero_de_serie")
+    @Enumerated(EnumType.STRING)
+    private StatusPatrimonio statusPatrimonio;
+
+    @NotNull
     private String numeroDeSerie;
 
-    @NotNull
-    @Column(name = "data_de_registro")
-    private Date dataDeRegistro;
+    private LocalDate dataDeRegistro;
 
     @NotNull
-    @Column(name = "valor_de_aquisicao")
     private BigDecimal valorDeAquisicao;
 
     @NotNull
-    @Column(name = "estado_atual")
     private String estadoAtual;
 
+    @NotBlank
+    private String notaFiscal;
+
+    @NotNull
+    private String tempoDeGarantiaMeses;
+
+    @NotNull
+    private Date dataDeAquisicao;
 
     @OneToMany(mappedBy = "patrimonio")
     @JsonIgnore
@@ -60,14 +68,8 @@ public class Patrimonio implements Serializable {
         return new SimpleDateFormat("yyyy-MM").format(date);
 
     }
-
     public String getFrontFormatedDate(Date date){
         return new SimpleDateFormat("MM/yyyy").format(date);
-    }
-
-
-    public void setIdPatrimonio(){
-
     }
 
 }

@@ -24,5 +24,5 @@ public class ContratoEquipamentoRequest implements Serializable {
     private Long matricula;
     private Date mesComp;
     private ProfissionalId profissionalId;
-    private boolean situacaoContrato;
+    private Boolean ativo;
 }

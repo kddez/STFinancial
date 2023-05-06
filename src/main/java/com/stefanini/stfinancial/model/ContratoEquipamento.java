@@ -25,22 +25,19 @@ public class ContratoEquipamento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idContratoEquipamento;
-    @Column(name = "status")
-    private String status;
-    @Column(name = "data_alocacao")
+
     private Date dataAlocacao;
-    @Column(name = "data_devolucao")
+
     private Date dataDevolucao;
-    @Column(name = "detalhes_contrato")
+
     private String detalhesContrato;
 
-    @Column(name= "situacao_contrato")
-    private boolean situacaoContrato;
+    private Boolean ativo;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumns({
-            @JoinColumn(name = "matricula", insertable = false, updatable = false),
-            @JoinColumn(name = "mesComp", insertable = false, updatable = false)
+            @JoinColumn(name = "mesComp", insertable = false, updatable = false),
+            @JoinColumn(name = "matricula", insertable = false, updatable = false)
     })
     private Profissional profissional;
 
@@ -61,4 +58,5 @@ public class ContratoEquipamento implements Serializable {
     public String getFrontFormatedDate(Date date) {
         return new SimpleDateFormat("MM/yyyy").format(date);
     }
+
 }

@@ -1,6 +1,7 @@
 package com.stefanini.stfinancial.controller;
 
 import com.stefanini.stfinancial.mapper.ContratoEquipamentoMapper;
+import com.stefanini.stfinancial.model.AlocacaoProfissionais;
 import com.stefanini.stfinancial.model.ContratoEquipamento;
 import com.stefanini.stfinancial.repository.ContratoEquipamentoRepository;
 import com.stefanini.stfinancial.request.ContratoEquipamentoRequest;
@@ -8,10 +9,13 @@ import com.stefanini.stfinancial.service.ContratoEquipamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.path;
 
 @RestController
 @RequestMapping("/stfinancial/contratoEquipamento")
@@ -36,10 +40,19 @@ public class ContratoEquipamentoController {
     @RequestMapping(path = "/salvarContratoEquipamento", method = RequestMethod.POST)
     public ResponseEntity<?> salvarContratoEquipamento(@RequestBody ContratoEquipamentoRequest request) {
         ContratoEquipamento contrato = mapper.toEntity(request);
-        System.out.println(request);
-        System.out.println(contrato);
         return ResponseEntity.ok(service.inserirContratoEquipamento(contrato));
     }
+
+    @RequestMapping(path = "listarContratoEquipamento", method = RequestMethod.GET)
+    public ResponseEntity<?> listar() {
+        return ResponseEntity.ok(service.listarContratos());
+    }
+
+    @RequestMapping(path = "listarContratosPorId/{idContratoEquipamento}", method = RequestMethod.GET)
+    public ResponseEntity<?> listarPorId(@PathVariable Long idContratoEquipamento) {
+        return ResponseEntity.ok(service.findContratosByIdContratoEquipamento(idContratoEquipamento));}
+
+    //Delete, listar ativos
 
 }
 

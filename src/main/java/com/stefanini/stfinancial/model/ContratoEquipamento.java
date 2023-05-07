@@ -12,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity(name= "ContratoEquipamento")
@@ -29,6 +30,8 @@ public class ContratoEquipamento implements Serializable {
     private Date dataAlocacao;
 
     private Date dataDevolucao;
+
+    private LocalDate dataExclusaoContrato;
 
     private String detalhesContrato;
 

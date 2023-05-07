@@ -6,5 +6,6 @@ public enum StatusPatrimonio {
     EM_USO,
     MANUTENCAO,
     DANIFICADO,
-    DESCARTADO;
+    DESCARTADO,
+    PENDENTE_DEVOLUCAO;
 }

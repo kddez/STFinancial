@@ -2,6 +2,7 @@ package com.stefanini.stfinancial.controller;
 
 import com.stefanini.stfinancial.mapper.PatrimonioMapper;
 import com.stefanini.stfinancial.model.Patrimonio;
+import com.stefanini.stfinancial.model.StatusPatrimonio;
 import com.stefanini.stfinancial.request.PatrimonioRequest;
 import com.stefanini.stfinancial.service.PatrimonioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,6 @@ public class PatrimonioController {
     @RequestMapping(path = "/salvarPatrimonio", method = RequestMethod.POST)
     public ResponseEntity<?> salvarPatrimonio(@RequestBody PatrimonioRequest request){
         Patrimonio patri = mapper.toEntity(request);
-
-        //NF não pode se repetir
-
         patri.setDataDeRegistro(LocalDate.now());
         return ResponseEntity.ok(service.inserirPatrimonio(patri));
     }
@@ -45,5 +43,15 @@ public class PatrimonioController {
     @RequestMapping (path = "/listarPatrimonios", method = RequestMethod.GET)
     public ResponseEntity<?> listar() {return ResponseEntity.ok(service.listarPatrimonios());}
 
-    //deletar, listar disponíveis
+    @RequestMapping (path = "/listarPatrimoniosDisponiveis", method = RequestMethod.GET)
+    public ResponseEntity<?> listarDisponiveis() {return ResponseEntity.ok(service.findAllDisponiveis());}
+
+    @RequestMapping (path = "/deletarPatrimonio/{idPatrimonio}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deletarPatrimonio (@PathVariable Long idPatrimonio) {
+        return ResponseEntity.ok(service.deletarPatrimonio(idPatrimonio));
+    }
+
+
+
+
 }

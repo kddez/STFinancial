@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -22,20 +23,17 @@ public class ContratoEquipamentoService {
 
     public ContratoEquipamento inserirContratoEquipamento(ContratoEquipamento contratoEquipamento) {
 
-        //Verifico se o patrimônio que está sendo passado existe;
         Patrimonio patrimonio = patrimonioRepository.findById(contratoEquipamento.getPatrimonio().getIdPatrimonio())
                 .orElseThrow(() -> new RuntimeException("Patrimonio não encontrado"));
-        //Verifico se o patrimônio que está sendo passado está disponível;
         if (patrimonio.getStatusPatrimonio() != StatusPatrimonio.DISPONIVEL) {
             throw new RuntimeException("O patrimônio não está disponível");
         }
-        //Seta o contrato como ativo;
         contratoEquipamento.setAtivo(true);
-        //cria o contrato
+
         contratoEquipamento = repo.save(contratoEquipamento);
-        //muda o status do patrimônio de DISPONIVEL para EM_USO após a criação do contrato;
+
         patrimonio.setStatusPatrimonio(StatusPatrimonio.EM_USO);
-        //salva a mudança do patrimônio;
+
         patrimonioRepository.save(patrimonio);
         return contratoEquipamento;
 
@@ -44,6 +42,35 @@ public class ContratoEquipamentoService {
     public List<ContratoEquipamento> listarContratos() {
         return repo.findAll();
 
+    }
+    public String deletarContratoEquipamento(Long idContratoEquipamento) {
+
+        Optional<ContratoEquipamento> optionalContratoEquipamento = repo.findById(idContratoEquipamento);
+
+        //Verifico se o contrato existe
+        if(optionalContratoEquipamento.isPresent()){
+
+            //Obtenho o conteúdo do optional
+            ContratoEquipamento contrato = optionalContratoEquipamento.get();
+            // insiro o contrato como 67inativo e data do momento da exclusão
+            contrato.setAtivo(false);
+            contrato.setDataExclusaoContrato(LocalDate.now());
+            repo.save(contrato);
+
+            //patrimonio é setado como pendente em todo o sistema.
+            Optional<Patrimonio> optionalPatrimonio = patrimonioRepository.findById(contrato.getPatrimonio().getIdPatrimonio());
+            Patrimonio patrimonio = optionalPatrimonio.get();
+            optionalPatrimonio.get().setStatusPatrimonio(StatusPatrimonio.PENDENTE_DEVOLUCAO);
+            patrimonioRepository.save(patrimonio);
+
+        } else {
+            throw new RuntimeException("O patrimônio de id: " + idContratoEquipamento + " não foi encontrado");
+        }
+        return "Contrato  desfeito";
+    }
+
+    public List<ContratoEquipamento> findAllAtivos() {
+        return repo.findAllByAtivoTrue();
     }
 
     public List<ContratoEquipamento> findContratosByIdContratoEquipamento(Long idContratoEquipamento) {

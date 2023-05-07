@@ -10,5 +10,6 @@ import java.util.List;
 public interface ContratoEquipamentoRepository extends JpaRepository<ContratoEquipamento, Long> {
 
     List<ContratoEquipamento> findContratosByIdContratoEquipamento(Long idContratoEquipamento);
+    List<ContratoEquipamento> findAllByAtivoTrue();
 
 }

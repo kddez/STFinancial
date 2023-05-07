@@ -52,7 +52,14 @@ public class ContratoEquipamentoController {
     public ResponseEntity<?> listarPorId(@PathVariable Long idContratoEquipamento) {
         return ResponseEntity.ok(service.findContratosByIdContratoEquipamento(idContratoEquipamento));}
 
-    //Delete, listar ativos
+    @GetMapping("/listarContratosAtivos")
+    public ResponseEntity<?> listarContratosAtivos() {
+        return ResponseEntity.ok(service.findAllAtivos());
+    }
+    @RequestMapping (path = "/deletarContratoEquipamento/{idContratoEquipamento}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deletarContratoEquipamento (@PathVariable Long idContratoEquipamento) {
+        return ResponseEntity.ok(service.deletarContratoEquipamento(idContratoEquipamento));
+    }
 
 }
 

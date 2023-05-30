@@ -27,11 +27,9 @@ public class Patrimonio implements Serializable {
     private Long idPatrimonio;
 
     @NotNull
-    @Column (name = "tipo_de_patrimonio")
     private String tipoDePatrimonio;
 
     @NotNull
-    @Column (name = "modelo")
     private String modelo;
 
     @NotNull
@@ -64,6 +62,8 @@ public class Patrimonio implements Serializable {
     @OneToMany(mappedBy = "patrimonio")
     @JsonIgnore
     private List<ContratoEquipamento> contratosEquipamentos;
+
+
     public String getFormatedDate(Date date){
         return new SimpleDateFormat("yyyy-MM").format(date);
 

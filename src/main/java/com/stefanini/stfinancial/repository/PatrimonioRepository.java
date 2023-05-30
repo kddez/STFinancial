@@ -11,7 +11,7 @@ import java.util.List;
 public interface PatrimonioRepository extends JpaRepository<Patrimonio, Long> {
 
     List<Patrimonio> findAllByStatusPatrimonio(StatusPatrimonio statusPatrimonio);
-
     Patrimonio findByNumeroDeSerie(String numeroDeSerie);
+
 
 }

@@ -47,8 +47,6 @@ public class ContratoEquipamento implements Serializable {
     @Columns(columns = {@Column(name="mesComp"), @Column(name="matricula")})
     private ProfissionalId profissionalId;
 
-
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idPatrimonio", referencedColumnName = "idPatrimonio")
     private Patrimonio patrimonio;

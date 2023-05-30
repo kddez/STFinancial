@@ -24,7 +24,7 @@ public class ContratoEquipamentoService {
     public ContratoEquipamento inserirContratoEquipamento(ContratoEquipamento contratoEquipamento) {
 
         Patrimonio patrimonio = patrimonioRepository.findById(contratoEquipamento.getPatrimonio().getIdPatrimonio())
-                .orElseThrow(() -> new RuntimeException("Patrimonio não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Patrimônio não encontrado"));
         if (patrimonio.getStatusPatrimonio() != StatusPatrimonio.DISPONIVEL) {
             throw new RuntimeException("O patrimônio não está disponível");
         }
@@ -47,12 +47,9 @@ public class ContratoEquipamentoService {
 
         Optional<ContratoEquipamento> optionalContratoEquipamento = repo.findById(idContratoEquipamento);
 
-        //Verifico se o contrato existe
         if(optionalContratoEquipamento.isPresent()){
 
-            //Obtenho o conteúdo do optional
             ContratoEquipamento contrato = optionalContratoEquipamento.get();
-            // insiro o contrato como 67inativo e data do momento da exclusão
             contrato.setAtivo(false);
             contrato.setDataExclusaoContrato(LocalDate.now());
             repo.save(contrato);

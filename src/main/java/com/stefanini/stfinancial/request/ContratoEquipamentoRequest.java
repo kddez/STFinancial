@@ -1,7 +1,6 @@
 package com.stefanini.stfinancial.request;
 
 import com.stefanini.stfinancial.model.Patrimonio;
-import com.stefanini.stfinancial.model.Profissional;
 import com.stefanini.stfinancial.model.ProfissionalId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
